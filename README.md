@@ -4,6 +4,16 @@ Tiny **TypeScript** RCON client built for CS2 / Source dedicated servers — the
 
 Zero dependencies. Works in Node 18+.
 
+## Features
+
+- `connect` / `command` / `end` Source RCON client
+- CLI `--dry-run`, `--timeout <ms>`, `--json`
+- Semicolon-separated multi-command runs
+
+## Changelog
+
+See [CHANGELOG.md](./CHANGELOG.md) (current **1.1.0**).
+
 ## Install
 
 ```bash
@@ -24,21 +34,13 @@ const rcon = new RconClient({
 
 await rcon.connect();
 console.log(await rcon.command("status"));
-console.log(await rcon.command("css_players"));
 await rcon.end();
 ```
 
-## API
-
-| Method | Description |
-|--------|-------------|
-| `connect()` | TCP + SERVERDATA_AUTH |
-| `command(cmd)` | SERVERDATA_EXECCOMMAND → response body |
-| `end()` | Close socket |
-
-## Why
-
-Panel → game node sync (VIP flags, FF/bhop prefs, admin bans) needs a boring, reliable RCON client. This one mirrors how YGuard nodes expect replies — multi-packet bodies concatenated until the empty SERVERDATA_RESPONSE_VALUE sentinel.
+```bash
+RCON_PASSWORD=xxx node dist/cli.js --json 127.0.0.1 27015 'status; css_players'
+RCON_PASSWORD=xxx node dist/cli.js --dry-run 127.0.0.1 27015 status
+```
 
 ## License
 

@@ -1,13 +1,14 @@
 {
   "name": "yguard-rcon",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Minimal Source/CS2 RCON client for YGuard nodes",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "start": "node dist/cli.js"
+    "start": "node dist/cli.js",
+    "test": "tsc --noEmit"
   },
   "keywords": ["rcon", "cs2", "source", "yguard", "counter-strike"],
   "author": "Kian Zarandi <kianzarandi701@gmail.com>",
